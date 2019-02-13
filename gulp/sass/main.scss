@@ -1,14 +1,17 @@
+.body{
+    display:flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .calculator{
     display:flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    width: 317px;
+    max-width: 317px;
+    flex-basis:0;
     background:rgb(223, 223, 223);
-    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.display{
+.calculator__display{
     display: flex;
     flex-flow:column;
     align-items: stretch;
@@ -16,29 +19,31 @@
     // border: 1px solid black;
 }
 
-.display__type{
+.display-calculator__type{
 
 } 
-.display__input{
-    // border: 1px solid black;
+
+.display-calculator__input{
     background:rgb(223, 223, 223);
     display: flex;
-    padding: 15px 0;
+    padding: 23px 7px;
     
 }
 .display__input--size{
     border:none;
+    height: 100%;
+    width: 100%;
     text-align: right;
-    font-size: 25px;
+    font-size: 40px;
+    font-weight: 500;
     outline: none;
     background:rgb(223, 223, 223);
 } 
-.display__memory{
+.display-calculator__memory{
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
-    // border: 1px solid black;
     background:rgb(223, 223, 223);
     
     
@@ -50,9 +55,11 @@
     width: 100%;
     outline: none;
     border:none;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 12px;
     padding: 7px 0;
     border-radius: 3px;
+    background:rgb(223, 223, 223);
 }
 .memory-display__option--size:hover{
     background: linear-gradient(to top, #d4d4d4, #b9b9b9);
@@ -84,15 +91,20 @@
     
     // border: 1px solid black;
 }
-
-
-.keyboard-calculator__button--number{
-    background: white;
+.keyboard-calculator--size{
+    padding: 16px;
     width: 100%;
     height: 100%;
     outline: none;
     border: none;
-    padding: 12px;
+}
+
+.keyboard-calculator__button--number{
+    background: white;
+    font-weight: bold;
+    font-size: 20px;
+    
+    
 }
 .keyboard-calculator__button--number:hover{
     background: linear-gradient(to top, #d4d4d4, #b9b9b9);
@@ -102,11 +114,8 @@
 }
 .keyboard-calculator__button--option{
     background:rgb(241, 241, 241);
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: none;
-    padding: 12px;
+    font-size: 18px;
+    font-weight:100;
 }
 .keyboard-calculator__button--option:hover{
     background: linear-gradient(to top, #d4d4d4, #b9b9b9);

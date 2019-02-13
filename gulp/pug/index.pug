@@ -4,15 +4,18 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="path/to/font-awesome/css/font-awesome.min.css")
         link(rel="stylesheet", href="main.css")
         title Culc
     body
         .calculator
-            .display 
-                .dislplay__type 1.1
-                .display__input
+            .calculator__display.display-calculator 
+                .display-calculator__type
+                    .memory-display__option
+                        button(class="memory-display__option--size") ≡ 
+                .display-calculator__input
                     input(type="text",value="0", class="display__input--size")
-                .display__memory.memory-display
+                .display-calculator__memory.memory-display
                     .memory-display__option
                         button(class="memory-display__option--size") MC
                     .memory-display__option
