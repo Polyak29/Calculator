@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="main.css"/>
+    <script src="script.js"></script>
     <title>Culc</title>
   </head>
   <body>
@@ -40,78 +41,90 @@
           </div>
         </div>
       </div>
-      <div class="calculator__keyboard keyboard-calculator">
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">%</button>
+      <div class="calculator__keyboard">
+        <div class="calculator__keyboard-container">    
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">%</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">√</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">x <sup>n</sup></button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()"><sup>1</sup>/x</button>
+          </div>
         </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">√</button>
+        <div class="calculator__keyboard-container">           
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">CE</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">C</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert()">⇐</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('÷')">÷</button>
+          </div>
         </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">x <sup>n</sup></button>
+        <div class="calculator__keyboard-container">       
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(7)">7</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(8)">8</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(9)">9</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('×')">×</button>
+          </div>
         </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option"><sup>1</sup>/x</button>
+        <div class="calculator__keyboard-container">
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(4)">4</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(5)">5</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(6)">6</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('-')">-</button>
+          </div>
         </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">CE</button>
+        <div class="calculator__keyboard-container">
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(1)">1</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(2)">2</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(3)">3</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('+')">+</button>
+          </div>
         </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">C</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">⇐</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">÷</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">7</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">8</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">9</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">×</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">4</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">5</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">6</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">-</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">1</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">2</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">3</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">+</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">±</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--number">0</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">,</button>
-        </div>
-        <div class="keyboard-calculator__button">
-          <button class="keyboard-calculator--size keyboard-calculator__button--option">=</button>
+        <div class="calculator__keyboard-container">
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('±')">±</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--number" onclick="insert(0)">0</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert(',')">,</button>
+          </div>
+          <div class="calculator__keyboard-button">
+            <button class="calculator__keyboard-button--operation" onclick="insert('=')">=</button>
+          </div>
         </div>
       </div>
     </div>

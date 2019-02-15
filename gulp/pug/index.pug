@@ -6,6 +6,7 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         link(rel="stylesheet", href="path/to/font-awesome/css/font-awesome.min.css")
         link(rel="stylesheet", href="main.css")
+        script(src="script.js")
         title Culc
     body
         .calculator
@@ -28,55 +29,61 @@ html(lang="en")
                         button(class="memory-display__option--size") MS
                     .memory-display__option
                         button(class="memory-display__option--size") M
-            .calculator__keyboard.keyboard-calculator
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") %
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") √
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") x <sup>n</sup>
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") <sup>1</sup>/x
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") CE
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") C
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") ⇐
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") ÷
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 7
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 8
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 9
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") ×
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 4
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 5
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 6
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") -
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 1
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 2
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 3
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") +
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") ±
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--number") 0
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") ,
-                .keyboard-calculator__button
-                    button(class="keyboard-calculator--size keyboard-calculator__button--option") =
+            .calculator__keyboard
+                .calculator__keyboard-container     
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") %
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") √
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") x <sup>n</sup>
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") <sup>1</sup>/x
+                .calculator__keyboard-container            
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") CE
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") C
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert()") ⇐
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('÷')") ÷
+                .calculator__keyboard-container        
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(7)") 7
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(8)") 8
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(9)") 9
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('×')") ×
+                .calculator__keyboard-container
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(4)") 4
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(5)") 5
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(6)") 6
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('-')") -
+                .calculator__keyboard-container
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(1)") 1
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(2)") 2
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(3)") 3
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('+')") +
+                .calculator__keyboard-container
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('±')") ±
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--number", onclick="insert(0)") 0
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert(',')") ,
+                    .calculator__keyboard-button
+                        button(class="calculator__keyboard-button--operation", onclick="insert('=')") =
                 
                 
 

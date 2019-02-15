@@ -51,14 +51,24 @@ gulp.task('sass',(function(){
 
 }));
 
+gulp.task('scripts',(function(){
+    return gulp.src('gulp/scripts/*.js')
+    .pipe(gulp.dest('./project'))
+    .pipe(browserSync.reload({
+        stream:true
+    }))
+
+}));
+
 
 gulp.task('watch', function(){
     gulp.watch('./**/*/*.pug',gulp.series('pug'))
     gulp.watch('./**/*/*.scss', gulp.series('sass'))
+    gulp.watch('gulp/scripts/script.js', gulp.series('scripts'))
 });
 
 gulp.task('default', gulp.series(
-    gulp.parallel('pug','sass'),
+    gulp.parallel('pug','sass','scripts'),
     gulp.parallel('watch','serve')
     ));
     
