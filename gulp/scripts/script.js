@@ -1,6 +1,5 @@
-    
+  var elem = document.getElementsByClassName('calculator__display-input--size')[0];
 function insert(num){
-    var elem = document.getElementsByClassName('display__input--size')[0];
     var ins = elem.value
     if(ins==='0'){   
        ins= num;
@@ -8,9 +7,10 @@ function insert(num){
         ins = ins+num 
     }
     elem.value=ins;
+    
 }
+
 function remove(){
-    var elem = document.getElementsByClassName('display__input--size')[0];
     var value = elem.value;
     var index = value.length-1;
     if(index>0){
@@ -18,10 +18,15 @@ function remove(){
     }else{
         elem.value='0';
     }
-}  
+}
+
 function clean(){  
-    var elem = document.getElementsByClassName('display__input--size')[0];
     elem.value='0';
 
 }
-  
+function add(){
+    var arch = document.getElementsByClassName('calculator__display-input--shadow')[0];
+    var ins2 = arch.value;
+    console.log(i.setTitle()=ins2);
+                                                                                                                                                                                          
+}

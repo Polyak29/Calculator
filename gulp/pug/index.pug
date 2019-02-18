@@ -4,30 +4,30 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        script(src="script.js", defer=true.toString())
         link(rel="stylesheet", href="main.css")
-        script(src="script.js", )
         title Culc
     body
         .calculator
-            .calculator__display.display-calculator 
-                .display-calculator__type
-                    .memory-display__option
-                        button(class="memory-display__option--size") ≡ 
-                .display-calculator__input
-                    input(type="text",value="0", class="display__input--size")
-                .display-calculator__memory.memory-display
-                    .memory-display__option
-                        button(class="memory-display__option--size") MC
-                    .memory-display__option
-                        button(class="memory-display__option--size") MR
-                    .memory-display__option
-                        button(class="memory-display__option--size") M+
-                    .memory-display__option
-                        button(class="memory-display__option--size") M-
-                    .memory-display__option
-                        button(class="memory-display__option--size") MS
-                    .memory-display__option
-                        button(class="memory-display__option--size") M
+            .calculator__display
+                .calculator__display-types
+                    button(class="calculator__display-types--size") ≡ 
+                .calculator__display-input
+                    input(type="text",value=" ",  class="calculator__display-input--shadow")
+                    input(type="text",value="0", pattern="^[ 0-9]+$", disabled class="calculator__display-input--size")
+                .calculator__display-memory.memory-calculator
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") MC
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") MR
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") M+
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") M-
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") MS
+                    .memory-calculator__operations
+                        button(class="memory-calculator__operations--size") M
             .calculator__keyboard
                 .calculator__keyboard-container     
                     .calculator__keyboard-button
@@ -73,7 +73,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(3)") 3
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('+')") +
+                        button(class="calculator__keyboard-button--operation", onclick="add()") +
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="insert('±')") ±

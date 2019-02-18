@@ -42,7 +42,7 @@ gulp.task('sass',(function(){
         .on("error", notify.onError({
             title: "style"
           }))
-        .pipe(csso())
+        // .pipe(csso())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./project'))
         .pipe(browserSync.reload({
