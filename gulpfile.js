@@ -6,9 +6,8 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     notify = require('gulp-notify'),
-    browserSync = require('browser-sync').create();
-
-    
+    browserSync = require('browser-sync').create(),
+    del = require('del');
 
 gulp.task('serve', function() {
     browserSync.init({
@@ -28,7 +27,6 @@ gulp.task('pug', function(){
             stream:true
         }))
 });
- 
 
 gulp.task('sass',(function(){
     return gulp.src('gulp/sass/*.scss')
@@ -51,9 +49,9 @@ gulp.task('sass',(function(){
         }))
 
 }));
-// gulp.task('clean', function(){
-//     return del('dist/**', {force:true});
-// });
+gulp.task('clean', function(){
+    return del('dist/**', {force:true});
+});
 
 gulp.task('scripts',(function(){
     return gulp.src('gulp/scripts/*.js')
@@ -72,7 +70,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', gulp.series(
+    'clean',
     gulp.parallel('pug','sass','scripts'),
     gulp.parallel('watch','serve')
     ));
-    
