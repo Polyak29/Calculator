@@ -40,13 +40,13 @@ html(lang="en")
                         button(class="calculator__keyboard-button--operation", onclick="insert()") <sup>1</sup>/x
                 .calculator__keyboard-container            
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert()") CE
+                        button(class="calculator__keyboard-button--operation", onclick="cleanElement()") CE
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="clean()") C
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="remove()") ⇐
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('÷')") ÷
+                        button(class="calculator__keyboard-button--operation", onclick="toSplit()") ÷
                 .calculator__keyboard-container        
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(7)") 7
@@ -55,7 +55,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(9)") 9
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('×')") ×
+                        button(class="calculator__keyboard-button--operation", onclick="multiply()") ×
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(4)") 4
@@ -64,7 +64,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(6)") 6
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('-')") -
+                        button(class="calculator__keyboard-button--operation", onclick=" substract(); ") -
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(1)") 1
@@ -73,7 +73,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(3)") 3
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="add()") +
+                        button(class="calculator__keyboard-button--operation", onclick=" add(); ") +
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="insert('±')") ±
@@ -82,7 +82,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="insert(',')") ,
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('=')") =
+                        button(class="calculator__keyboard-button--operation", onclick=" result(); ") =
                 
                 
 
