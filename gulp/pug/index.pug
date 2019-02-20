@@ -31,13 +31,13 @@ html(lang="en")
             .calculator__keyboard
                 .calculator__keyboard-container     
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert()") %
+                        button(class="calculator__keyboard-button--operation", onclick="procent()") %
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert()") √
+                        button(class="calculator__keyboard-button--operation", onclick="sqrt()") √
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert()") x <sup>n</sup>
+                        button(class="calculator__keyboard-button--operation", onclick="exponentiation()") x <sup>n</sup>
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert()") <sup>1</sup>/x
+                        button(class="calculator__keyboard-button--operation", onclick="fraction()") <sup>1</sup>/x
                 .calculator__keyboard-container            
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="cleanElement()") CE
@@ -76,7 +76,7 @@ html(lang="en")
                         button(class="calculator__keyboard-button--operation", onclick=" add(); ") +
                 .calculator__keyboard-container
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert('±')") ±
+                        button(class="calculator__keyboard-button--operation", onclick="change()") ±
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(0)") 0
                     .calculator__keyboard-button
