@@ -2,35 +2,54 @@ var elem = document.getElementsByClassName('calculator__display-input--size')[0]
 
 var archive = document.getElementsByClassName('calculator__display-input--shadow')[0];
 
+var hidden = document.getElementsByClassName('calculator__display-input--hidden')[0];
+
 function insert( btn ) {
-    var val = elem.value;
+    var val = elem.value,
+        arch = archive.value;
 
     if (val === '0') {
         val = btn;
-    }else {
+    } else {
         val = val + btn; 
     }
 
+    if (arch === '0') {
+        arch = btn;
+    
+    }else {
+        arch = arch + btn; 
+    }
+
+    if(elem.value != '0' & archive.value == '') {
+        val = 0;
+        val = val + btn;
+    }
+    
     elem.value = val;
+    
+    archive.value = arch;
 }
 
 
 function remove() {
-    var value = elem.value;
-
-    var index = value.length - 1;
-
-    if (index > 0) {
-        elem.value = value.slice(0, index);
+    if(archive.value != '') {
+        elem.value = elem.value.slice(0, -1);
     } else {
-        elem.value = '0';
+        elem.value = elem.value;
+    }
+
+    if(archive.value.search(/[\+\*\÷\-]/) != '-1' ) {
+        archive.value = archive.value.slice(0, -1);
+    } else {
+        archive.value = archive.value;
     }
 }
 
 function clean() { 
     elem.value = '0';
 
-    archive.value = '0';
+    archive.value = '';
 }
 
 function cleanElement(){  
@@ -40,113 +59,153 @@ function cleanElement(){
 
 
 function add() {
-    if (elem.value.search(/\D/) != '-1') {
-        elem.value = elem.value;
-        archive.value = archive.value;
-    } 
-    else {
-        archive.value = elem.value;
+    if (elem.value == '') {
+        archive.value = archive.value.slice(0, -1) + '+';
+        
+    } else if (archive.value == '') {
+        archive.value = elem.value.replace(/\s+/g, '') + '+';
+        elem.value = '';
+    } else {
+        archive.value = archive.value + '+';
+        elem.value = '';
     }
-    operation = elem.value = '+';
-
-                                                                                                                                                                               
+    
+    operation = '+';                                                                                                                                                                   
 }
 
 
 function result() {
-    var firstNumber = archive.value;
-
-    var secondNumber = elem.value;
-
-    if (secondNumber.search(/\D/) != '-1') {
-        secondNumber = secondNumber.slice(1);
+    
+    switch(operation) {
+        case '+':
+        case '-':
+        case '×':
+        case '÷':
+        case '.':
+        case '%':
+            elem.value = eval(archive.value);
+            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+            break;
+        case 'n':
+            elem.value = Math.pow(hidden.value, elem.value);
+            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+            break;
+        case 'sqrt':
+            archive.value = '';
+            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
     }
-
-    if (operation === '+') {
-        sum = (+firstNumber) + (+secondNumber);
-        elem.value = sum;
-        archive.value = '';
-    } else if (operation === '-') {
-        elem.value = (+firstNumber) - (+secondNumber);
-        archive.value = '';
-    } else if (operation === '×') {
-        elem.value = (+firstNumber) * (+secondNumber);
-        archive.value = '';
-    } else if (operation === '÷') {
-        elem.value = (+firstNumber) / (+secondNumber);
-        archive.value = '';
-    } else if (operation === 'n') {
-        elem.value = Math.pow(archive.value, elem.value);
-    } else if (operation === '%') {
-        elem.value = eval(+archive.value + z.input + (archive.value * elem.value / 100));
-        archive.value = '';
+    
+    hidden.value = archive.value;
+    archive.value = '';
+    
+    // if (archive.value == '') {
+    //     elem.value += eval(hidden.value)
     }
 }
 
+
+
 function substract() {
-    if (elem.value.search(/\D/) != '-1') {
-        archive.value = archive.value;
+    if (elem.value == '') {
+        archive.value = archive.value.slice(0, -1) + '-';
+    } else if (archive.value == '') {
+        archive.value = elem.value.replace(/\s+/g, '') + '-';
+        elem.value = '';
     } else {
-        archive.value = elem.value;
+        archive.value = archive.value + '-';
+        elem.value = '';
     }
 
-    operation = elem.value = '-';
-
-    archive.value = archive.value;
+    operation = '-';
 }
 
 function multiply() {
-    if (elem.value.search(/\D/) != '-1') {
-    archive.value = archive.value;
+    if (elem.value == '') {
+        archive.value = archive.value.slice(0, -1) + '*';
+        
+    } else if (archive.value == '') {
+        archive.value = elem.value.replace(/\s+/g, '') + '*';
+        elem.value = '';
     } else {
-        archive.value = elem.value;
+        archive.value = archive.value + '*';
+        elem.value = '';
     }
-
-    operation = elem.value = '×';
-
-    archive.value = archive.value;
+    
+    operation = '×';                                                                                                                                                                   
 }
 
 function toSplit() {
-    if (elem.value.search(/\D/) != '-1') {
-        archive.value = archive.value;
+    if (elem.value == '') {
+        archive.value = archive.value.slice(0, -1) + '/';
+    } else if (archive.value == '') {
+        archive.value = elem.value.replace(/\s+/g, '') + '/';
+        elem.value = '';
+    } else {
+        archive.value = archive.value + '/';
+        elem.value = '';
     }
-    else {
-        archive.value = elem.value;
-    }
-    operation = elem.value = '÷';
-    archive.value = archive.value;
+    
+    operation = '÷';                                                                                                                                                           
 }
 
 function exponentiation() {
-    archive.value = elem.value;
+    hidden.value = elem.value;
+
+    archive.value += '^';
+
     elem.value = '';
-    operation = elem.value = 'n';
-    elem.value = elem.value.slice(0,-1);
-     
-    
+
+    operation = 'n';
+
 }
 function change() {
     if(elem.value === elem.value) {
         elem.value = -(elem.value);
-    }else {
-        elem. value = elem.value;
+    } else {
+        elem.value = elem.value;
     }
 }
 function fraction() {
-    archive.value = 'NUMBER ' + elem.value 
+    archive.value = '1' + '/' + '(' + elem.value + ')'; 
+
     elem.value = 1 / elem.value;
 }
 
-function sqrt(){
-    elem.value = Math.sqrt(elem.value);
-}
-function procent() {
-    z = elem.value.match(/[\+\×\÷\-]/)    
-if( z.input === '+'||'-'||'×'||'÷'){ 
-    elem.value = '';
+function sqrt() {
+    archive.value = 'SQRT' + '(' + elem.value + ')';
 
+    elem.value = Math.sqrt(elem.value);
+
+    operation = 'sqrt';
+}
+function percent() {
+    z = archive.value.split(/[\+\*\-\/]/);
+
+    g = archive.value.match(/[\+\*\-\/]/);
+
+    elem.value = z[0] * elem.value / 100;
+
+    archive.value = z[0] + g[0] + elem.value;
+
+    operation = '%';
+}
+
+function comma(){
+    if (elem.value === '0') {
+        elem.value = '0' + '.';
+        archive.value = elem.value;
+    } else if (elem.value === '') {
+        elem.value = '0' + '.';
+        archive.value = archive.value + elem.value;
+    } else {
+        if (elem.value.search(/\./) != '-1') {
+            elem.value = elem.value;
+        } else {
+            elem.value = elem.value + '.';
+            archive.value = archive.value + '.';
+        }
     }
-    operation = elem.value = '%';
-    elem.value = elem.value.slice(0,-1);
+
+     operation = '.';
+
 }

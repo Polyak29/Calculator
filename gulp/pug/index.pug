@@ -13,8 +13,9 @@ html(lang="en")
                 .calculator__display-types
                     button(class="calculator__display-types--size") ≡ 
                 .calculator__display-input
-                    input(type="text",value=" ",  class="calculator__display-input--shadow")
+                    input(type="text",value=" ", pattern="^[ 0-9]+$", disabled class="calculator__display-input--shadow")
                     input(type="text",value="0", pattern="^[ 0-9]+$", disabled class="calculator__display-input--size")
+                    input(type="hidden" pattern="^[ 0-9]+$", disabled class="calculator__display-input--hidden")
                 .calculator__display-memory.memory-calculator
                     .memory-calculator__operations
                         button(class="memory-calculator__operations--size") MC
@@ -31,7 +32,7 @@ html(lang="en")
             .calculator__keyboard
                 .calculator__keyboard-container     
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="procent()") %
+                        button(class="calculator__keyboard-button--operation", onclick="percent()") %
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="sqrt()") √
                     .calculator__keyboard-button
@@ -80,7 +81,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", onclick="insert(0)") 0
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick="insert(',')") ,
+                        button(class="calculator__keyboard-button--operation", onclick="comma()") ,
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick=" result(); ") =
                 
