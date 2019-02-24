@@ -98,9 +98,9 @@ function result() {
     hidden.value = archive.value;
     archive.value = '';
     
-    // if (archive.value == '') {
-    //     elem.value += eval(hidden.value)
-    }
+    // // if (archive.value == '') {
+    // //     elem.value += eval(hidden.value)
+    // }
 }
 
 
