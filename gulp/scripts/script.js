@@ -5,7 +5,7 @@ var archive = document.getElementsByClassName('calculator__display-input--shadow
 var hidden = document.getElementsByClassName('calculator__display-input--hidden')[0];
 
 function insert( btn ) {
-    var val = elem.value,
+    var val = elem.value;
         arch = archive.value;
 
     if (val === '0') {
@@ -75,7 +75,12 @@ function add() {
 
 
 function result() {
-    
+    var mas = ['+', '*', '/', '-']
+    if (archive.value.lastIndexOf(mas[0] != '-1')||archive.value.lastIndexOf(mas[1] != '-1')
+    ||archive.value.lastIndexOf(mas[2] != '-1')||archive.value.lastIndexOf(mas[3] != '-1')) {
+        archive.value = archive.value.slice(0, -1);
+    }
+
     switch(operation) {
         case '+':
         case '-':
@@ -94,13 +99,12 @@ function result() {
             archive.value = '';
             elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
     }
-    
-    hidden.value = archive.value;
+
     archive.value = '';
     
-    // // if (archive.value == '') {
-    // //     elem.value += eval(hidden.value)
-    // }
+    if (elem.value == 'undefined') {
+        elem.value = '';
+    } 
 }
 
 
