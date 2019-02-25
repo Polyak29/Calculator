@@ -85,21 +85,28 @@ function result() {
         case '.':
         case '%':
             elem.value = eval(archive.value);
-            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
             break;
         case 'n':
             elem.value = Math.pow(hidden.value, elem.value);
-            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
             break;
         case 'sqrt':
             archive.value = '';
-            elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+            break;
+
+            
     }
+    var round = +elem.value;
+
+    elem.value = +round.toFixed(2); 
+            
+    elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 
     archive.value = '';
     
     if (elem.value == 'undefined') {
-        elem.value = '';
+        elem.value = '0';
+    } else if ( elem.value === 'NaN') {
+        elem.value = '0';
     }
     
 }
@@ -170,12 +177,20 @@ function fraction() {
     archive.value = '1' + '/' + '(' + elem.value + ')'; 
 
     elem.value = 1 / elem.value;
+
+    var round = +elem.value;
+    
+    elem.value = round.toFixed(5);
 }
 
 function sqrt() {
     archive.value = 'SQRT' + '(' + elem.value + ')';
 
     elem.value = Math.sqrt(elem.value);
+
+    var round = +elem.value;
+
+    elem.value = round.toFixed(2);
 
     operation = 'sqrt';
 }
