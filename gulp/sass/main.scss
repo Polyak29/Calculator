@@ -44,6 +44,16 @@
                 outline: none;
                 background:rgb(223, 223, 223);
             }
+            &--memory{
+                border:none;
+                height: 100%;
+                width: 100%;
+                text-align: left;
+                font-size: 15px;
+                font-weight: normal;
+                outline: none;
+                background:rgb(223, 223, 223);
+            }
         }
         &-memory{
             display: flex;

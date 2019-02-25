@@ -16,17 +16,18 @@ html(lang="en")
                     input(type="text",value=" ", pattern="^[ 0-9]+$", disabled class="calculator__display-input--shadow")
                     input(type="text",value="0", pattern="^[ 0-9]+$", disabled class="calculator__display-input--size")
                     input(type="hidden" pattern="^[ 0-9]+$", disabled class="calculator__display-input--hidden")
+                    input(type="text",value=" ", pattern="^[ 0-9]+$", disabled class="calculator__display-input--memory")
                 .calculator__display-memory.memory-calculator
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size") MC
+                        button(class="memory-calculator__operations--size" onclick="memoryClean()") MC
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size") MR
+                        button(class="memory-calculator__operations--size" onclick="memoryRead()") MR
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size") M+
+                        button(class="memory-calculator__operations--size" onclick="memoryAdd()") M+
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size") M-
+                        button(class="memory-calculator__operations--size" onclick="memorySub()") M-
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size") MS
+                        button(class="memory-calculator__operations--size" onclick="memorySave()") MS
                     .memory-calculator__operations
                         button(class="memory-calculator__operations--size") M
             .calculator__keyboard

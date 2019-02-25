@@ -4,6 +4,8 @@ var archive = document.getElementsByClassName('calculator__display-input--shadow
 
 var hidden = document.getElementsByClassName('calculator__display-input--hidden')[0];
 
+var memory = document.getElementsByClassName('calculator__display-input--memory')[0];
+
 function insert( btn ) {
     var val = elem.value;
         arch = archive.value;
@@ -75,12 +77,6 @@ function add() {
 
 
 function result() {
-    var mas = ['+', '*', '/', '-']
-    if (archive.value.lastIndexOf(mas[0] != '-1')||archive.value.lastIndexOf(mas[1] != '-1')
-    ||archive.value.lastIndexOf(mas[2] != '-1')||archive.value.lastIndexOf(mas[3] != '-1')) {
-        archive.value = archive.value.slice(0, -1);
-    }
-
     switch(operation) {
         case '+':
         case '-':
@@ -104,7 +100,8 @@ function result() {
     
     if (elem.value == 'undefined') {
         elem.value = '';
-    } 
+    }
+    
 }
 
 
@@ -212,4 +209,41 @@ function comma(){
 
      operation = '.';
 
+}
+
+function memorySave() {
+    if (elem.value == '0' || '') {
+        memory.value = memory.value;
+    } else {
+        memory.value = elem.value;
+    }
+}
+
+function memoryClean() {
+    memory.value = '';
+}
+
+function memoryAdd() {
+    if (elem.value == '0' || '') {
+        memory.value = memory.value;
+    } else {
+        memory.value = +elem.value + +memory.value
+    }
+}
+
+function memorySub() {
+    if (elem.value == '0' || '') {
+        memory.value = memory.value;
+    } else {
+        memory.value = +memory.value  -  +elem.value
+    }
+}
+
+function memoryRead() {
+    if (memory.value == '') {
+        elem.value = '0';
+    } else {
+        elem.value = memory.value;
+        archive.value = memory.value;
+    }
 }
