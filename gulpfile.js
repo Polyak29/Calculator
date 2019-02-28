@@ -54,7 +54,7 @@ gulp.task('clean', function(){
 });
 
 gulp.task('scripts',(function(){
-    return gulp.src('gulp/scripts/*.js')
+    return gulp.src('gulp/scripts/scripts2.js')
     .pipe(gulp.dest('./project'))
     .pipe(browserSync.reload({
         stream:true
@@ -66,7 +66,7 @@ gulp.task('scripts',(function(){
 gulp.task('watch', function(){
     gulp.watch('./**/*/*.pug',gulp.series('pug'))
     gulp.watch('./**/*/*.scss', gulp.series('sass'))
-    gulp.watch('gulp/scripts/script.js', gulp.series('scripts'))
+    gulp.watch('gulp/scripts/scripts2.js', gulp.series('scripts'))
 });
 
 gulp.task('default', gulp.series(

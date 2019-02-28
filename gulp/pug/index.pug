@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        script(src="script.js", defer=true.toString())
+        script(src="scripts2.js", defer=true.toString())
         link(rel="stylesheet", href="main.css")
         title Culc
     body
@@ -51,36 +51,36 @@ html(lang="en")
                         button(class="calculator__keyboard-button--operation", onclick="toSplit()") ÷
                 .calculator__keyboard-container        
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(7)") 7
+                        button(class="calculator__keyboard-button--number" value="7") 7
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(8)") 8
+                        button(class="calculator__keyboard-button--number" value="8") 8
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(9)") 9
+                        button(class="calculator__keyboard-button--number" value="9") 9
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="multiply()") ×
                 .calculator__keyboard-container
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(4)") 4
+                        button(class="calculator__keyboard-button--number", value="4") 4
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(5)") 5
+                        button(class="calculator__keyboard-button--number", value="5") 5
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(6)") 6
+                        button(class="calculator__keyboard-button--number", value="6") 6
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick=" substract(); ") -
                 .calculator__keyboard-container
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(1)") 1
+                        button(class="calculator__keyboard-button--number", value="1") 1
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(2)") 2
+                        button(class="calculator__keyboard-button--number", value="2") 2
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(3)") 3
+                        button(class="calculator__keyboard-button--number", value="3") 3
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", onclick=" add(); ") +
+                        button(class="calculator__keyboard-button--operation", id='add') +
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="change()") ±
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--number", onclick="insert(0)") 0
+                        button(class="calculator__keyboard-button--number", value="3") 0
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--operation", onclick="comma()") ,
                     .calculator__keyboard-button
