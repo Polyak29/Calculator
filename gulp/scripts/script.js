@@ -108,7 +108,6 @@ function result() {
     } else if ( elem.value === 'NaN') {
         elem.value = '0';
     }
-    
 }
 
 
@@ -223,7 +222,6 @@ function comma(){
     }
 
      operation = '.';
-
 }
 
 function memorySave() {
