@@ -2,11 +2,11 @@
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(id="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         script(src="prototype.js", defer=true.toString())
         link(rel="stylesheet", href="main.css")
-        title Culc
+        title Calc
     body
         .calculator
             .calculator__display
@@ -16,39 +16,40 @@ html(lang="en")
                     input(type="text",value=" ", pattern="^[ 0-9]+$", disabled class="calculator__display-input--shadow")
                     input(type="text",value="0", pattern="^[ 0-9]+$", disabled class="calculator__display-input--size")
                     input(type="hidden" pattern="^[ 0-9]+$", disabled class="calculator__display-input--hidden")
+                    input(type="hidden" pattern="^[ 0-9]+$", disabled class="calculator__display-input--hidden2")
                     input(type="text",value=" ", pattern="^[ 0-9]+$", disabled class="calculator__display-input--memory")
                 .calculator__display-memory.memory-calculator
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size" name="memoryClean") MC
+                        button(class="memory-calculator__operations--size" id="memoryClean") MC
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size" name="memoryRead") MR
+                        button(class="memory-calculator__operations--size" id="memoryRead") MR
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size" name="memoryAdd") M+
+                        button(class="memory-calculator__operations--size" id="memoryAdd") M+
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size" name="memorySub") M-
+                        button(class="memory-calculator__operations--size" id="memorySub") M-
                     .memory-calculator__operations
-                        button(class="memory-calculator__operations--size" name="memorySave") MS
+                        button(class="memory-calculator__operations--size" id="memorySave") MS
                     .memory-calculator__operations
                         button(class="memory-calculator__operations--size") M
             .calculator__keyboard
                 .calculator__keyboard-container     
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="percent") %
+                        button(class="calculator__keyboard-button--operation", id="percent") %
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="sqrt") √
+                        button(class="calculator__keyboard-button--operation", id="sqrt") √
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="exponentiation") x <sup>n</sup>
+                        button(class="calculator__keyboard-button--operation operationButton", value='^') x <sup>n</sup>
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="fraction") <sup>1</sup>/x
+                        button(class="calculator__keyboard-button--operation", id="fraction") <sup>1</sup>/x
                 .calculator__keyboard-container            
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="cleanElement") CE
+                        button(class="calculator__keyboard-button--operation cleanButton") CE
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="clean") C
+                        button(class="calculator__keyboard-button--operation cleanButton") C
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="remove") ⇐
+                        button(class="calculator__keyboard-button--operation cleanButton") ⇐
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="toSplit") ÷
+                        button(class="calculator__keyboard-button--operation operationButton") ÷
                 .calculator__keyboard-container        
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number" value="7") 7
@@ -57,7 +58,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number" value="9") 9
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="multiply") ×
+                        button(class="calculator__keyboard-button--operation operationButton") ×
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", value="4") 4
@@ -66,7 +67,7 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", value="6") 6
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name='substract') -
+                        button(class="calculator__keyboard-button--operation operationButton") -
                 .calculator__keyboard-container
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", value="1") 1
@@ -75,16 +76,16 @@ html(lang="en")
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", value="3") 3
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name='add') +
+                        button(class="calculator__keyboard-button--operation operationButton") +
                 .calculator__keyboard-container
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="change") ±
+                        button(class="calculator__keyboard-button--operation", id="change") ±
                     .calculator__keyboard-button
                         button(class="calculator__keyboard-button--number", value="0") 0
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="comma") ,
+                        button(class="calculator__keyboard-button--operation", id="comma") ,
                     .calculator__keyboard-button
-                        button(class="calculator__keyboard-button--operation", name="result") =
+                        button(class="calculator__keyboard-button--operation operationButton") =
                 
                 
 

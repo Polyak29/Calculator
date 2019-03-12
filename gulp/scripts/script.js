@@ -108,6 +108,7 @@ function result() {
     } else if ( elem.value === 'NaN') {
         elem.value = '0';
     }
+
 }
 
 

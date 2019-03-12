@@ -1,8 +1,16 @@
-var elem = document.querySelector('.calculator__display-input--size');
+var display = document.querySelector('.calculator__display-input--size');
 
 var archive = document.querySelector('.calculator__display-input--shadow');
 
 var hidden = document.querySelector('.calculator__display-input--hidden');
+
+var hidden2 = document.querySelector('.calculator__display-input--hidden2');
+
+var CurrentNumber = 0;
+
+var newNumber = false;
+
+var pendingOperation = '';
 
 var memory = document.getElementsByClassName('calculator__display-input--memory')[0];
 
@@ -11,179 +19,156 @@ function Calculator() {
         el.addEventListener('click', this.insert);
     });
     [...document.getElementsByClassName('memory-calculator__operations--size')].forEach(el =>{
-        el.addEventListener('click', this.insert);
+        el.addEventListener('click', this.memory);
     });
 }
 
 function Keyboard() {
     Calculator.apply(this, arguments);
-    document.getElementsByName('add')[0].addEventListener('click', this.add);
-    document.getElementsByName('percent')[0].addEventListener('click', this.percent);
-    document.getElementsByName('sqrt')[0].addEventListener('click', this.sqrt);
-    document.getElementsByName('exponentiation')[0].addEventListener('click', this.exponentiation);
-    document.getElementsByName('fraction')[0].addEventListener('click', this.fraction);
-    document.getElementsByName('cleanElement')[0].addEventListener('click', this.cleanElement);
-    document.getElementsByName('clean')[0].addEventListener('click', this.clean);
-    document.getElementsByName('remove')[0].addEventListener('click', this.remove);
-    document.getElementsByName('toSplit')[0].addEventListener('click', this.toSplit);
-    document.getElementsByName('multiply')[0].addEventListener('click', this.multiply);
-    document.getElementsByName('change')[0].addEventListener('click', this.change);
-    document.getElementsByName('substract')[0].addEventListener('click', this.substract);
-    document.getElementsByName('comma')[0].addEventListener('click', this.comma);
-    document.getElementsByName('result')[0].addEventListener('click', this.result);
+    [...document.getElementsByClassName('operationButton')].forEach(el =>{
+        el.addEventListener('click', this.calculation);
+    });
 
+    [...document.getElementsByClassName('cleanButton')].forEach(el =>{
+        el.addEventListener('click', this.clean);
+    });
+    document.getElementById('sqrt').addEventListener('click', this.sqrt);
+    document.getElementById('fraction').addEventListener('click', this.fraction);
+    document.getElementById('change').addEventListener('click', this.change);
+    document.getElementById('percent').addEventListener('click', this.percent);
+    document.getElementById('comma').addEventListener('click', this.comma);
 }
 
 Keyboard.prototype.__proto__ = Calculator.prototype;
 
 Keyboard.prototype.insert = function(event) {
-    var val = elem.value;
-        arch = archive.value;
-
-    if (val === '0') {
-        val = event.target.value;
+  var number = event.target.textContent;
+  if (newNumber) {
+      display.value = number;
+      newNumber = false;
+  } else {
+    if (display.value === '0'){
+        display.value = number;
     } else {
-        val = val + event.target.value; 
+      display.value += number;
     }
+  }
+ 
+}
 
-    if (arch === '0') {
-        arch = event.target.value;
+Keyboard.prototype.calculation = function(op) {
+    var operation = op.target.textContent;
+    var localOperation = +display.value;
+    var localHidden = +hidden.value;
+    var localSign = hidden2.value;
+    var localArchive = archive.value.split(/[\+\*\-\/]/);
+    var round = 0;
+    localArchive[0] = localArchive[0].trim();
 
-    }else {
-        arch = arch + event.target.value; 
-    }
-
-    if(elem.value != '0' & archive.value == '') {
-        val = 0;
-        val = val + event.target.value;
-    }
-
-    elem.value = val;
     
-
-    archive.value = arch;
-}
-
-Keyboard.prototype.remove = function() {
-    if(archive.value != '') {
-        elem.value = elem.value.slice(0, -1);
-    } else {
-        elem.value = elem.value;
+    if(newNumber && pendingOperation === '=') {
+        if(localSign.search(/[\+\*\/\-]/) !== '-1' && operation !== '=') {
+            localSign = operation;
+            hidden2.value = localSign;
+        } else {
+        CurrentNumber = eval(CurrentNumber + localSign + localHidden);
+        }
+    } else if (newNumber && pendingOperation !== '=') {
+        display.value = CurrentNumber;
+        hidden.value = CurrentNumber;
     }
-
-    if(archive.value.search(/[\+\*\÷\-]/) != '-1' ) {
-        archive.value = archive.value.slice(0, -1);
-    } else {
-        archive.value = archive.value;
+    else {
+        newNumber = true;
+        switch(pendingOperation) {
+            case '+':
+                CurrentNumber = CurrentNumber + +localOperation;
+                hidden2.value = pendingOperation;
+                hidden.value = localOperation;
+            break;
+            case '×':
+                CurrentNumber = CurrentNumber * +localOperation;
+                hidden2.value = '*';
+                hidden.value = localOperation;
+                break;
+            case '÷':
+                CurrentNumber = CurrentNumber / +localOperation;
+                hidden2.value = '/';
+                hidden.value = localOperation;
+                break;
+            case '-':
+                CurrentNumber = CurrentNumber - +localOperation;
+                hidden2.value = pendingOperation;
+                hidden.value = localOperation;
+                break;
+            case 'x n':
+                CurrentNumber = Math.pow(CurrentNumber, localOperation)
+                break;
+            case '':
+                CurrentNumber = localOperation;
+        }
     }
+ 
+    pendingOperation =  operation;
+    round = +CurrentNumber;
+    display.value = +round.toFixed(2); 
+    if (pendingOperation !== '='){
+         if (localArchive[0] === display.value || localArchive[localArchive.length - 2] === display.value) {
+            archive.value = archive.value;
+        } else
+        archive.value += localOperation + pendingOperation;
+    } else archive.value = '';
 }
 
-Keyboard.prototype.clean = function() {
-    elem.value = '0';
-
-    archive.value = '';
-}
-
-Keyboard.prototype.cleanElement = function() {
-    elem.value = '0';
-}
-
-Keyboard.prototype.add = function() {
-    if (elem.value == '') {
-        archive.value = archive.value.slice(0, -1) + '+';
-        
-    } else if (archive.value == '') {
-        archive.value = elem.value.replace(/\s+/g, '') + '+';
-        elem.value = '';
+Keyboard.prototype.clean = function(del) {
+    if(del.target.textContent === 'C') {
+        display.value = '0';
+        archive.value = '';
+        hidden.value = '';
+        CurrentNumber = 0;
+        pendingOperation = '';
+    } else if(del.target.textContent === 'CE') {
+        display.value = '0';
     } else {
-        archive.value = archive.value + '+';
-        elem.value = '';
+        if(display.value.slice(0, -1) === '') {
+            display.value = '0';
+        } else
+        display.value = display.value.slice(0, -1);
     }
-    
-    operation = '+';
+   
 }
 
-Keyboard.prototype.substract = function() {
-    if (elem.value == '') {
-        archive.value = archive.value.slice(0, -1) + '-';
-    } else if (archive.value == '') {
-        archive.value = elem.value.replace(/\s+/g, '') + '-';
-        elem.value = '';
-    } else {
-        archive.value = archive.value + '-';
-        elem.value = '';
-    }
-
-    operation = '-';
-}
-
-Keyboard.prototype.toSplit = function() {
-    if (elem.value == '') {
-        archive.value = archive.value.slice(0, -1) + '/';
-    } else if (archive.value == '') {
-        archive.value = elem.value.replace(/\s+/g, '') + '/';
-        elem.value = '';
-    } else {
-        archive.value = archive.value + '/';
-        elem.value = '';
-    }
-    
-    operation = '÷';   
-}
-
-Keyboard.prototype.multiply = function() {
-    if (elem.value == '') {
-        archive.value = archive.value.slice(0, -1) + '*';
-        
-    } else if (archive.value == '') {
-        archive.value = elem.value.replace(/\s+/g, '') + '*';
-        elem.value = '';
-    } else {
-        archive.value = archive.value + '*';
-        elem.value = '';
-    }
-    
-    operation = '×'; 
-}
-
-Keyboard.prototype.exponentiation = function() {
-    hidden.value = elem.value;
-
-    archive.value += '^';
-
-    elem.value = '';
-
-    operation = 'n';
-}
 
 Keyboard.prototype.change = function() {
-    if(elem.value === elem.value) {
-        elem.value = -(elem.value);
+    if(display.value > '0') {
+        display.value = -display.value;
+        hidden.value = display.value;
     } else {
-        elem.value = elem.value;
+        display.value = -display.value;
+        hidden.value = display.value;
     }
 }
 
 Keyboard.prototype.fraction = function() {
-    archive.value = '1' + '/' + '(' + elem.value + ')'; 
+    var round = 0;
 
-    elem.value = 1 / elem.value;
+    archive.value = '1' + '/' + '(' + display.value + ')'; 
 
-    var round = +elem.value;
+    display.value = 1 / display.value;
+
+    round = +display.value;
     
-    elem.value = round.toFixed(5);
+    display.value = +round.toFixed(3);
 }
 
 Keyboard.prototype.sqrt = function() {
-    archive.value = 'SQRT' + '(' + elem.value + ')';
+    var round = 0;
+    archive.value = 'SQRT' + '(' + display.value + ')';
 
-    elem.value = Math.sqrt(elem.value);
+    display.value = Math.sqrt(display.value);
 
-    var round = +elem.value;
+    round = +display.value;
 
-    elem.value = round.toFixed(2);
-
-    operation = 'sqrt';
+    display.value = +round.toFixed(2);
 }
 
 Keyboard.prototype.percent = function() {
@@ -191,73 +176,37 @@ Keyboard.prototype.percent = function() {
 
     g = archive.value.match(/[\+\*\-\/]/);
 
-    elem.value = z[0] * elem.value / 100;
+    display.value = z[0] * display.value / 100;
 
-    archive.value = z[0] + g[0] + elem.value;
+    archive.value = z[0] + g[0] + display.value;
+    hidden.value = display.value;
+   
 
-    operation = '%';
+
 }
 
 Keyboard.prototype.comma = function() {
-    if (elem.value === '0') {
-        elem.value = '0' + '.';
-        archive.value = elem.value;
-    } else if (elem.value === '') {
-        elem.value = '0' + '.';
-        archive.value = archive.value + elem.value;
-    } else {
-        if (elem.value.search(/\./) != '-1') {
-            elem.value = elem.value;
-        } else {
-            elem.value = elem.value + '.';
-            archive.value = archive.value + '.';
-        }
-    }
+   var localComma = display.value;
 
-     operation = '.';
+   if (newNumber) {
+       localComma = '0.'
+       newNumber = false;
+   } else {
+       if ( localComma.indexOf('.') === -1 ) {
+           localComma += '.'
+       };
+   };
+   display.value = localComma;
 }
 
-Keyboard.prototype.result = function() {
-    switch(operation) {
-        case '+':
-        case '-':
-        case '×':
-        case '÷':
-        case '.':
-        case '%':
-            elem.value = eval(archive.value);
-            break;
-        case 'n':
-            elem.value = Math.pow(hidden.value, elem.value);
-            break;
-        case 'sqrt':
-            archive.value = '';
-            break;
-
-            
-    }
-    var round = +elem.value;
-
-    elem.value = +round.toFixed(2); 
-            
-    elem.value = elem.value.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-
-    archive.value = '';
-    
-    if (elem.value == 'undefined') {
-        elem.value = '0';
-    } else if ( elem.value === 'NaN') {
-        elem.value = '0';
-    }
-}
 
 function Memory() {
     Calculator.apply(this, arguments);
-    document.getElementsByName('memoryClean')[0].addEventListener('click', this.memoryClean);
-    document.getElementsByName('memoryRead')[0].addEventListener('click', this.memoryRead);
-    document.getElementsByName('memoryAdd')[0].addEventListener('click', this.memoryAdd);
-    document.getElementsByName('memorySub')[0].addEventListener('click', this.memorySub);
-    document.getElementsByName('memorySave')[0].addEventListener('click', this.memorySave);
+    document.getElementById('memoryClean').addEventListener('click', this.memoryClean);
+    document.getElementById('memoryRead').addEventListener('click', this.memoryRead);
+    document.getElementById('memoryAdd').addEventListener('click', this.memoryAdd);
+    document.getElementById('memorySub').addEventListener('click', this.memorySub);
+    document.getElementById('memorySave').addEventListener('click', this.memorySave);
 
 }
 
@@ -268,35 +217,34 @@ Memory.prototype.memoryClean = function() {
 }
 
 Memory.prototype.memoryAdd = function() {
-    if (elem.value == '0' || '') {
+    if (display.value == '0' || '') {
         memory.value = memory.value;
     } else {
-        memory.value = +elem.value + +memory.value
+        memory.value = +display.value + +memory.value
     }
 }
 
 Memory.prototype.memoryRead = function() {
     if (memory.value == '') {
-        elem.value = '0';
+        display.value = '0';
     } else {
-        elem.value = memory.value;
-        archive.value = memory.value;
+        display.value = memory.value;
     }
 }
 
 Memory.prototype.memorySub = function() {
-    if (elem.value == '0' || '') {
+    if (display.value == '0' || '') {
         memory.value = memory.value;
     } else {
-        memory.value = +memory.value  -  +elem.value
+        memory.value = +memory.value  -  +display.value
     }
 }
 
 Memory.prototype.memorySave = function() {
-    if (elem.value == '0' || '') {
+    if (display.value == '0' || '') {
         memory.value = memory.value;
     } else {
-        memory.value = elem.value;
+        memory.value = display.value;
     }
 }
 
